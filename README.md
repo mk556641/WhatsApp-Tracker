@@ -28,10 +28,10 @@ php watracker.php
 
 Una lista con los comandos que actualmente tiene el programa:
 
-- ***-check <numero>*** Te muestra por pantalla la última hora el línea del usuario. (solo funciona con usuarios que tengan visible su última hora en línea).
-- ***-cRemote0 <tuNumero> <numero>*** Te muestra por pantalla la última hora el línea del usuario y te mando un log al número que tu le asignes. (solo funciona con usuarios que tengan visible su última hora en línea).
-- ***-cHidden <numero>*** Te muestra por pantalla la última hora el línea del usuario. (Funciona para todos los usuarios, enfocado para los que lo tienen en invisible).
-- ***-cRemote1 <tuNumero> <numero>*** Te muestra por pantalla la última hora el línea del usuario y te manda un log al número que tu le asignes. (Funciona para todos los usuarios, enfocado para los que lo tienen en invisible).
+- ***-check < numero >*** Te muestra por pantalla la última hora el línea del usuario. (solo funciona con usuarios que tengan visible su última hora en línea).
+- ***-cRemote0 < tuNumero > < numero >*** Te muestra por pantalla la última hora el línea del usuario y te mando un log al número que tu le asignes. (solo funciona con usuarios que tengan visible su última hora en línea).
+- ***-cHidden < numero >*** Te muestra por pantalla la última hora el línea del usuario. (Funciona para todos los usuarios, enfocado para los que lo tienen en invisible).
+- ***-cRemote1 < tuNumero > < numero >*** Te muestra por pantalla la última hora el línea del usuario y te manda un log al número que tu le asignes. (Funciona para todos los usuarios, enfocado para los que lo tienen en invisible).
 
 ----------
 ***Inglés/English***
