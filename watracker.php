@@ -124,7 +124,7 @@ if ($_SERVER['argv'][1] == "-cHidden") {
 	if(($lastpresence == "available") && ($presence == "unavailable")){
 	
 		$timeOffline = date("Y-m-d H:i:s");	
-		while($presence == "offline"){
+		while($presence == "unavailable"){
 			$timeDiff = round(strtotime(date("Y-m-d H:i:s")) - strtotime($timeOffline));
 			echo secondsToTime($timeDiff);
 			$wa->PollMessages();
