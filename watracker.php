@@ -61,8 +61,6 @@ function onPresenceReceived($username, $from, $type)
 {
     global $presence;
     $presence = $type;
-    echo $type;
-    echo "PRUEBA\n";
 }
 
 function secondsToTime($seconds) {
@@ -87,16 +85,12 @@ if ($argc < 2) {
 }
 
 $dst=$_SERVER['argv'][2];
-$msg = "";
-for ($i=3; $i<$argc; $i++) {
-    $msg .= $_SERVER['argv'][$i]." ";
-}
 
 echo "====================================================\n";
 echo "               WhatsApp tracker v0.1                \n";
 echo "====================================================\n\n";
 echo "[*] Logging in as '$nickname' ($sender)\n";
-$wa = new WhatsProt($sender, $imei, $nickname, TRUE);
+$wa = new WhatsProt($sender, $imei, $nickname, FALSE);
 
 $wa->connect();
 $wa->loginWithPassword($password);
@@ -134,7 +128,7 @@ if ($_SERVER['argv'][1] == "-cHidden") {
 			$timeDiff = round(strtotime(date("Y-m-d H:i:s")) - strtotime($timeOffline));
 			echo secondsToTime($timeDiff);
 			$wa->PollMessages();
-			sleep(60);
+			sleep(5);
 		}
 	
 	}
