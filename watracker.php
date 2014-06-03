@@ -74,9 +74,9 @@ function secondsToTime($seconds) {
 
 $nickname = "WhatsApp Tracker";
 // #### DO NOT ADD YOUR INFO AND THEN COMMIT THIS FILE! ####
-$sender = 	"34668832384"; // Number of the bot with country code
+$sender = 	""; // Number of the bot with country code
 $imei = 	""; // Not used
-$password =     "MZ5Fq/pu5F+ztfSf2Dskqr6hNwE="; // Password you received from WhatsApp
+$password =     ""; // Password you received from WhatsApp
 
 if ($argc < 2) {
 	echo "====================================================\n";
