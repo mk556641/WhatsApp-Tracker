@@ -2068,11 +2068,13 @@ class WhatsProt
         if (strcmp($node->getTag(), "presence") == 0
             && strncmp($node->getAttribute('from'), $this->phoneNumber, strlen($this->phoneNumber)) != 0
             && strpos($node->getAttribute('from'), "-") == false
-            && $node->getAttribute('type') != null) {
+            && $node->getAttribute('type') == null) {
+           $presence = array();
+           $presence['type'] = "available";
             $this->eventManager()->firePresence(
                 $this->phoneNumber,
                 $node->getAttribute('from'),
-                $node->getAttribute('type')
+                $presence['type'] = "available";
             );
         }
         if ($node->getTag() == "presence"
