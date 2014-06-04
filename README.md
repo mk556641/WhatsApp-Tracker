@@ -1,8 +1,8 @@
 WhatsApp-Tracker
 ================
 
-A tool that checks the last time online whether the user has enabled or disabled the last seen time.
-Una herramienta que permite ver la última hora de cualquier usuario de WhatsApp, independientemente de que tenga la última hora en línea oculta.
+- A tool that checks the last time online whether the user has enabled or disabled the last seen time.
+- Una herramienta que permite ver la última hora de cualquier usuario de WhatsApp, independientemente de que tenga la última hora en línea oculta.
 
 ![WATracker](http://cl.ly/image/1P331F2S3q0b/watracker.png)
 
@@ -15,7 +15,7 @@ Es una herramienta que permite rastrear los últimos tiempos en línea del usuar
 
 Actualmente hay dos posibles formas para mostrar los tiempos en línea del usuario, o bien por pantalla o bien de forma remota. De forma remota, irá enviandote al número de teléfono que tú le asignes un log de la última vez en línea.
 
-Esta basado en [WhatsAPI](https://github.com/venomous0x/WhatsAPI) un proyecto que esta llevando @Shirioko y la comunidad :)
+Esta basado en [WhatsAPI](https://github.com/venomous0x/WhatsAPI) un proyecto que esta llevando [Shirioko](https://github.com/shirioko) y la comunidad :)
 
 ### ¿Motivo de este script?
 
@@ -43,7 +43,7 @@ It's a tool that allows to track when the user is online or offline, wether the 
 
 There are currently two ways to display the user's last seen time, by screen or remotely. Remotely will send you a log of the user you are tracking.
 
-It is based on [WhatsAPI](https://github.com/venomous0x/WhatsAPI) a project that is taking @Shirioko and community :)
+It is based on [WhatsAPI](https://github.com/venomous0x/WhatsAPI) a project that is taking [Shirioko](https://github.com/shirioko) and community :)
 
 
 ### The reason for this script?
