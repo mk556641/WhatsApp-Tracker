@@ -2067,15 +2067,22 @@ class WhatsProt
         }
         if (strcmp($node->getTag(), "presence") == 0
             && strncmp($node->getAttribute('from'), $this->phoneNumber, strlen($this->phoneNumber)) != 0
-            && strpos($node->getAttribute('from'), "-") == false
-            && $node->getAttribute('type') == null) {
-           $presence = array();
-           $presence['type'] = "available";
+            && strpos($node->getAttribute('from'), "-") == false) {
+            $presence = array();
+            if($node->getAttribute('type') == null){
             $this->eventManager()->firePresence(
                 $this->phoneNumber,
                 $node->getAttribute('from'),
-                $presence['type'] = "available";
+                $presence['type'] = "available"
             );
+            }
+            else{
+            $this->eventManager()->firePresence(
+                $this->phoneNumber,
+                $node->getAttribute('from'),
+                $presence['type'] = "unavailable"
+            );
+            }
         }
         if ($node->getTag() == "presence"
             && strncmp($node->getAttribute('from'), $this->phoneNumber, strlen($this->phoneNumber)) != 0
