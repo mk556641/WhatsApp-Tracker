@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php
-require '/src/php/whatsprot.class.php';
+date_default_timezone_set('Europe/Madrid');
+require 'src/php/whatsprot.class.php';
 
 function fgets_u($pStdn)
 {
@@ -61,6 +62,11 @@ function onPresenceReceived($username, $from, $type)
 {
     global $presence;
     $presence = $type;
+    if($type == "available")
+    	echo "- The user is online\n\n";
+    else
+    	echo "- The user is offline\n\n";
+
 }
 
 function secondsToTime($seconds) {
@@ -98,17 +104,19 @@ $wa->eventManager()->bind('onGetRequestLastSeen', 'onGetRequestLastSeen');
 $wa->eventManager()->bind("onPresence", "onPresenceReceived");
 
 
-if ($_SERVER['argv'][1] == "-check") {
-    echo "\n[-] Tracker mode (ON):\n";
-    while (TRUE) {
-		$wa->sendGetRequestLastSeen($dst);
-    	sleep(60);
-	}
+if (($_SERVER['argv'][1] == "-cRemote0") || ($_SERVER['argv'][1] == "-check")) {
+	echo "\n[-] Tracker mode (ON):\n";
+	    while (TRUE) {
+			$wa->sendGetRequestLastSeen($_SERVER['argv'][3]);
+			if($_SERVER['argv'][1] == "-cRemote0")
+				$wa->sendMessage($dst, "(".$_SERVER['argv'][3].") ".$ls);
+    		sleep(60);
+		}
 
 }
 
 
-if ($_SERVER['argv'][1] == "-cHidden") {
+if (($_SERVER['argv'][1] == "-cHidden") ||($_SERVER['argv'][1] == "-cRemote1")) {
 	echo "\n[-] Tracker mode (ON): Waiting the user to get online...\n";
 	$wa->SendPresenceSubscription($dst);
 	$wa->PollMessages();
@@ -119,32 +127,22 @@ if ($_SERVER['argv'][1] == "-cHidden") {
 		echo "- The user is offline\n\n";
 		
 	while(true){
-	$wa->PollMessages();
-	$lastpresence = $presence;	
-	if(($lastpresence == "available") && ($presence == "unavailable")){
+		$wa->PollMessages();
+		if(($lastpresence == "available") && ($presence == "unavailable")){
 	
-		$timeOffline = date("Y-m-d H:i:s");	
-		while($presence == "unavailable"){
-			$timeDiff = round(strtotime(date("Y-m-d H:i:s")) - strtotime($timeOffline));
-			echo secondsToTime($timeDiff);
-			$wa->PollMessages();
-			sleep(5);
+			$timeOffline = date("Y-m-d H:i:s");	
+			while($presence == "unavailable"){
+				$timeDiff = round(strtotime(date("Y-m-d H:i:s")) - strtotime($timeOffline));
+				echo secondsToTime($timeDiff);
+				if($_SERVER['argv'][1] == "-cRemote1")
+					$wa->sendMessage($dst, "(".$_SERVER['argv'][3].") ".secondsToTime($timeDiff));
+				$wa->PollMessages();
+				sleep(5);
+			}
+	
 		}
-	
-	}
-			
-		sleep(5);
+	$lastpresence = $presence;
+	sleep(5);
 	}
 	
-}
-
-
-if ($_SERVER['argv'][1] == "-cRemote0") {
-	echo "\n[-] Tracker mode (ON):\n";
-	    while (TRUE) {
-		$wa->sendGetRequestLastSeen($_SERVER['argv'][3]);
-		$wa->sendMessage($dst, "(".$_SERVER['argv'][3].") ".$ls);
-    	sleep(60);
-	}
-
 }
