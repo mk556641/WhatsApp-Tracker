@@ -86,7 +86,7 @@ if ($argc < 2) {
 	echo "====================================================\n";
 	echo "               WhatsApp Tracker v0.1                \n";
 	echo "====================================================\n\n";
-    echo "USAGE: ".$_SERVER['argv'][0]." [-check <phone>] [-cHidden <phone>] [-cRemote0 <myPhone> <phone>] [-cRemote1 <phone>]\n";
+    echo "USAGE: php ".$_SERVER['argv'][0]." [-check <targetPhone>] [-cHidden <targetPhone>]\n [-cRemote0 <myPhone> <targetPhone>] [-cRemote1 <myPhone> <targetPhone>]\n";
     exit(1);
 }
 
@@ -107,9 +107,12 @@ $wa->eventManager()->bind("onPresence", "onPresenceReceived");
 if (($_SERVER['argv'][1] == "-cRemote0") || ($_SERVER['argv'][1] == "-check")) {
 	echo "\n[-] Tracker mode (ON):\n";
 	    while (TRUE) {
-			$wa->sendGetRequestLastSeen($_SERVER['argv'][3]);
-			if($_SERVER['argv'][1] == "-cRemote0")
+	    	if($_SERVER['argv'][1] == "-check")
+				$wa->sendGetRequestLastSeen($dst);
+			else{
+				$wa->sendGetRequestLastSeen($_SERVER['argv'][3]);
 				$wa->sendMessage($dst, "(".$_SERVER['argv'][3].") ".$ls);
+				}
     		sleep(60);
 		}
 
